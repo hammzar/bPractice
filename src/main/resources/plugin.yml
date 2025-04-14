@@ -1,0 +1,3 @@
+name: Blaze
+version: '${project.version}'
+main: me.hamza.blaze.Blaze
