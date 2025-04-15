@@ -1,8 +1,9 @@
 package me.hamza.blaze;
 
 import lombok.Getter;
+import me.hamza.blaze.arenas.ArenaHandler;
+import me.hamza.blaze.arenas.generator.ArenaGenerator;
 import me.hamza.blaze.data.PlayerHandler;
-import me.hamza.blaze.kits.Kit;
 import me.hamza.blaze.kits.KitHandler;
 import me.hamza.blaze.mongo.MongoHandler;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -19,6 +20,8 @@ public class Blaze extends JavaPlugin {
     private MongoHandler mongoHandler;
     private PlayerHandler playerHandler;
     private KitHandler kitHandler;
+    private ArenaGenerator arenaGenerator;
+    private ArenaHandler arenaHandler;
 
     @Override
     public void onEnable() {
@@ -27,6 +30,10 @@ public class Blaze extends JavaPlugin {
         mongoHandler = new MongoHandler(getConfig());
         playerHandler = new PlayerHandler();
         kitHandler = new KitHandler();
+        kitHandler.loadKitsFromConfig();
+        arenaGenerator = new ArenaGenerator();
+        arenaHandler = new ArenaHandler();
+        arenaHandler.loadBaseArenasFromConfig();
     }
 
     @Override
