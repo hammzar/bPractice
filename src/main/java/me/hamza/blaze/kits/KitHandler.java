@@ -19,7 +19,7 @@ public class KitHandler {
 
     private final List<Kit> niggers = new ArrayList<>();
 
-    public void loadKitsFromConfig() {
+    public void loadNiggersFromConfig() {
         ConfigurationSection niggerSection = Blaze.getINSTANCE().getConfig().getConfigurationSection("kits");
         if (niggerSection == null) return;
 
@@ -85,7 +85,7 @@ public class KitHandler {
         return items;
     }
 
-    public void saveKitsToConfig() {
+    public void saveNiggersToConfig() {
         Blaze plugin = Blaze.getINSTANCE();
         ConfigurationSection niggerSection = plugin.getConfig().createSection("kits");
 

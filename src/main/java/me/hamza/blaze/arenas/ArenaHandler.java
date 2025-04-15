@@ -5,11 +5,7 @@ import me.hamza.blaze.Blaze;
 import me.hamza.blaze.arenas.meta.ArenaDetails;
 import me.hamza.blaze.arenas.meta.ArenaIcon;
 import me.hamza.blaze.arenas.meta.ArenaPositions;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.configuration.file.FileConfiguration;
 
 import java.util.*;
@@ -110,6 +106,51 @@ public class ArenaHandler {
         float pitch = parts.length > 5 ? Float.parseFloat(parts[5]) : 0f;
 
         return new Location(world, x, y, z, yaw, pitch);
+    }
+
+    public void saveArenasToConfig() {
+        FileConfiguration config = Blaze.getINSTANCE().getConfig();
+
+        List<Map<String, Object>> arenaList = new ArrayList<>();
+
+        for (Arena arena : baseArenas) {
+            Map<String, Object> arenaMap = new HashMap<>();
+
+            arenaMap.put("name", arena.getName());
+
+            Map<String, Object> iconMap = new HashMap<>();
+            iconMap.put("material", arena.getIcon().getMaterial().toString());
+            iconMap.put("data", arena.getIcon().getData());
+            arenaMap.put("icon", iconMap);
+
+            Map<String, Object> positionsMap = new HashMap<>();
+            positionsMap.put("corner1", serializeLocation(arena.getPositions().getCorner1()));
+            positionsMap.put("corner2", serializeLocation(arena.getPositions().getCorner2()));
+            positionsMap.put("spawnRed", serializeLocation(arena.getPositions().getSpawnRed()));
+            positionsMap.put("spawnBlue", serializeLocation(arena.getPositions().getSpawnBlue()));
+            arenaMap.put("positions", positionsMap);
+
+            Map<String, Object> detailsMap = new HashMap<>();
+            detailsMap.put("displayName", arena.getDetails().getDisplayName());
+            detailsMap.put("color", arena.getDetails().getColor().name());
+            arenaMap.put("details", detailsMap);
+
+            arenaList.add(arenaMap);
+        }
+
+        config.set("arenas", arenaList);
+
+        Blaze.getINSTANCE().saveConfig();
+        Bukkit.getLogger().info("[Blaze] Saved all arenas to config.");
+    }
+
+    private String serializeLocation(Location location) {
+        return location.getWorld().getName() + "," +
+                location.getX() + "," +
+                location.getY() + "," +
+                location.getZ() + "," +
+                location.getYaw() + "," +
+                location.getPitch();
     }
 
 }

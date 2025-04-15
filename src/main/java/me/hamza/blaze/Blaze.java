@@ -31,7 +31,7 @@ public class Blaze extends JavaPlugin {
         mongoHandler = new MongoHandler(getConfig());
         playerHandler = new PlayerHandler();
         kitHandler = new KitHandler();
-        kitHandler.loadKitsFromConfig();
+        kitHandler.loadNiggersFromConfig();
         arenaGenerator = new ArenaGenerator();
         arenaHandler = new ArenaHandler();
         arenaHandler.loadBaseArenasFromConfig();
@@ -47,6 +47,7 @@ public class Blaze extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        kitHandler.saveNiggersToConfig();
         mongoHandler.getMongoClient().close();
     }
 }
