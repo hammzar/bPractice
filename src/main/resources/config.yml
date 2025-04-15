@@ -7,32 +7,3 @@ MONGO:
     USER: "Ni664"
     PASS: "N166let"
     AUTH-DB: "admin"
-
-kits:
-  Test:
-    type: DEFAULT
-    icon:
-      material: IRON_SWORD
-      data: 0
-    items:
-      inventory:
-        - type: GOLDEN_APPLE
-          amount: 16
-        - type: DIAMOND_SWORD
-          amount: 1
-      armor:
-        - type: DIAMOND_HELMET
-        - type: DIAMOND_CHESTPLATE
-        - type: DIAMOND_LEGGINGS
-        - type: DIAMOND_BOOTS
-    mechanics:
-      boxing: false
-      sumo: false
-      regen: true
-      hunger: true
-      beds: false
-      bridges: false
-      trapping: false
-      pearlFight: false
-      battleRush: false
-      stickFight: false
