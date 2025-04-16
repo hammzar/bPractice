@@ -5,6 +5,7 @@ import me.hamza.blaze.arenas.ArenaHandler;
 import me.hamza.blaze.arenas.generator.ArenaGenerator;
 import me.hamza.blaze.data.PlayerHandler;
 import me.hamza.blaze.kits.KitHandler;
+import me.hamza.blaze.match.MatchHandler;
 import me.hamza.blaze.mongo.MongoHandler;
 import me.hamza.blaze.utils.CC;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -23,6 +24,7 @@ public class Blaze extends JavaPlugin {
     private KitHandler kitHandler;
     private ArenaGenerator arenaGenerator;
     private ArenaHandler arenaHandler;
+    private MatchHandler matchHandler;
 
     @Override
     public void onEnable() {
@@ -35,6 +37,7 @@ public class Blaze extends JavaPlugin {
         arenaGenerator = new ArenaGenerator();
         arenaHandler = new ArenaHandler();
         arenaHandler.loadBaseArenasFromConfig();
+        matchHandler = new MatchHandler();
 
         CC.log("");
         CC.log("&f&m----------------------------");
